@@ -9,8 +9,8 @@ const app = express();
 // Conexão com o banco de dados
 db.connect();
 
-// Habilita server a receber dados via post
-app.use(express.urlencoded({ extended: true }));
+// Habilita server para receber dados em JSON
+app.use(express.json())
 
 // Definindo as rotas
 app.use("/api", routes);
