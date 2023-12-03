@@ -40,18 +40,31 @@ async function put(req, res) {
         product
     })
 
-    // const product = await ProductsModel.findOne({_id: id})
+//      Método que não traz como resposta o item modificado
+/*      const product = await ProductsModel.findOne({_id: id})
 
-    // await product.updateOne(req.body)
+     await product.updateOne(req.body)
 
-    // res.send({
-    //     message: 'Produto alterado',
-    //     product
-    // })
+     res.send({
+         message: 'Produto alterado'
+     }) */
 }
 
-module.exports = {
+async function remove(req, res) {
+    const { id } = req.params
+  
+    const remove = await ProductsModel.deleteOne({ _id: id })
+    
+    const message = remove.deletedCount = 1 ? 'success' : 'error'
+
+    res.send({
+      message,
+    })
+  }
+  
+  module.exports = {
     get,
     post,
     put,
-}
+    remove,
+  }
